@@ -1,0 +1,31 @@
+#include <Grove_LED_Bar.h>
+#include <dht.h>
+
+#define dht_apin A0
+const int LIGHT = A1;
+dht DHT;
+ 
+void setup(){
+ 
+  Serial.begin(9600);
+  delay(500);
+  Serial.println("Pierwsza seria pomiarów\n\n");
+  delay(1000);
+  pinMode(LIGHT, INPUT);
+ 
+}
+ 
+void loop(){
+
+  DHT.read11(dht_apin);
+    
+    Serial.print(DHT.humidity);
+    Serial.print("    ");    
+    Serial.print(DHT.temperature); 
+    Serial.print("    "); 
+    Serial.print(analogRead(LIGHT));
+    Serial.println(" ");
+    
+    delay(5000);//5s=5000 co ile pomiar//600k = 10min// zmienić potem na 600k, 5000 jest dobre żeby sprawdzić czy działa
+ 
+}
